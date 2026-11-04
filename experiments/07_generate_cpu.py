@@ -16,6 +16,7 @@ QUESTION = "Explain in two sentences why the sky is blue."
 def main() -> None:
     tok, model = M.load()
     ids = M.chat_ids(tok, QUESTION)
+    M.generate(model, ids[:, :4], max_new_tokens=1)  # warm-up: the first pass is slow
     res = M.generate(model, ids, max_new_tokens=48)
     print(f"\nprompt: {ids.shape[1]} tokens  ->  generated: {len(res.tokens)} tokens")
     print(f"answer: {tok.decode(res.tokens, skip_special_tokens=True)!r}\n")

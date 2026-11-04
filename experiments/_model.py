@@ -18,11 +18,26 @@ MODEL = "Qwen/Qwen3-0.6B"
 torch.manual_seed(0)
 
 
+def _local_path() -> str:
+    """Return the local copy of the model, downloading it only if it is missing.
+
+    Loading by repo name makes `transformers` call the Hugging Face API on every run, and
+    anonymous API calls get rate-limited (HTTP 429). A local path needs no network.
+    """
+    from huggingface_hub import snapshot_download
+
+    try:
+        return snapshot_download(MODEL, local_files_only=True)
+    except Exception:
+        return snapshot_download(MODEL)  # first run: ~1.5 GB download
+
+
 def load():
     """Load tokenizer + model (float32 on CPU, ~2.4 GB RAM). Takes ~10 s."""
     t0 = time.perf_counter()
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.float32).eval()
+    path = _local_path()
+    tok = AutoTokenizer.from_pretrained(path)
+    model = AutoModelForCausalLM.from_pretrained(path, dtype=torch.float32).eval()
     print(f"loaded {MODEL} in {time.perf_counter() - t0:.1f} s")
     return tok, model
 

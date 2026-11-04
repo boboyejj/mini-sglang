@@ -79,7 +79,14 @@ def load_tokenizer():
         from transformers import AutoTokenizer
 
         files = ["tokenizer_config.json", "vocab.json", "merges.txt", "config.json"]
-        paths = [hf_hub_download("Qwen/Qwen3-0.6B", f) for f in files]
+
+        def fetch(f):  # local copy first: avoids rate-limited Hugging Face API calls
+            try:
+                return hf_hub_download("Qwen/Qwen3-0.6B", f, local_files_only=True)
+            except Exception:
+                return hf_hub_download("Qwen/Qwen3-0.6B", f)
+
+        paths = [fetch(f) for f in files]
         return AutoTokenizer.from_pretrained(os.path.dirname(paths[0]))
     except Exception as e:  # network blocked, etc.
         print(f"(tokenizer unavailable: {type(e).__name__}; falling back to fake token IDs)")
