@@ -1,11 +1,10 @@
-"""CPU-only playground: watch the radix prefix cache share, lock and evict KV slots.
+"""Experiment 2: watch the radix prefix cache share, lock and evict KV slots.
 
-Run:  python playground/radix_demo.py
+Run:  python experiments/02_radix_prefix_sharing.py
 """
 
-import torch
-
 import minisgl.core as core
+import torch
 from minisgl.scheduler.cache import CacheManager
 
 PAGE_SIZE = 1
@@ -45,7 +44,9 @@ def main() -> None:
     print("\n2) Request B shares the first 4 tokens: match splits A's node")
     b_ids = torch.tensor([1, 2, 3, 4, 9, 9], dtype=torch.int32)
     handle = tree.match_prefix(b_ids).cuda_handle
-    print(f"  matched {handle.cached_len} tokens -> reused slots {handle.get_matched_indices().tolist()}")
+    print(
+        f"  matched {handle.cached_len} tokens -> reused slots {handle.get_matched_indices().tolist()}"
+    )
     show_tree(cm)
 
     print("\n3) B locks its prefix while running: those tokens become protected")
