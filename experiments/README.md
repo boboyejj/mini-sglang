@@ -30,7 +30,7 @@ Run each script from the repository root, e.g. `python experiments/01_request_co
 Each script ends with a question. Read its docstring's **Try** line for a variation, predict
 the output, then run it.
 
-## Experiments with real model weights (7–10)
+## Experiments with real model weights (7–12)
 
 **Why download weights?** Experiments 1–6 simulate the bookkeeping with fake tokens. They
 show *where* K/V lives and *when* it is reused, but not *what* it is or *why* it matters.
@@ -54,14 +54,16 @@ with greedy (`argmax`) sampling.
 | 8 | `08_kv_cache_on_off.py` | Why a KV cache exists | 32 tokens: 4.1 s with cache vs 28.5 s without; identical output |
 | 9 | `09_kv_cache_memory.py` | KV bytes per token; how mini-sglang sizes its pool | 112 KiB/token in bf16; a 24 GB GPU holds ~178k tokens |
 | 10 | `10_prefix_reuse_real.py` | Prefix caching with real tensors (what the radix cache relies on) | 137 of ~153 tokens reused; ~2x faster prefill; identical answers |
+| 11 | `11_batched_decode.py` | Batching decode: step time vs batch size | Batch 64: step only 5x slower than batch 1, so 12x the tokens/s |
+| 12 | `12_real_model_scheduler.py` | Capstone: mini-sglang's real scheduler + radix cache driving the real model through a paged KV pool | 4 requests, chunking + prefix hits; every answer identical to plain generation; 68% of prefill saved |
 
-The first run of each loads the model in ~6 s. Timings vary with the machine.
+After a fresh container start, the first load can take ~2 minutes (reading 1.5 GB from a cold disk); later loads take ~1–2 s. Timings vary with the machine.
 Qwen3-0.6B is small, so expect simple, sometimes wrong answers: these experiments measure
 the serving mechanics, not answer quality.
 
 ## Files
 
-- `_model.py`: loads Qwen3-0.6B and runs the prefill/decode loop for experiments 7–10.
+- `_model.py`: loads Qwen3-0.6B and runs the prefill/decode loop for experiments 7–12.
 - `_common.py`: the CPU shim, `make_managers()` (builds the scheduler's managers like
   `Scheduler.__init__`), `run_sim()` (a copy of `Scheduler.normal_loop` with fake tokens),
   `load_tokenizer()` and `print_tree()`.
@@ -70,5 +72,5 @@ the serving mechanics, not answer quality.
 
 - Experiment 3 downloads only Qwen3-0.6B's tokenizer files (a few MB). Without network
   access it falls back to fake token IDs.
-- Experiments 7–10 download Qwen3-0.6B's weights (~1.5 GB) on first run into
+- Experiments 7–12 download Qwen3-0.6B's weights (~1.5 GB) on first run into
   `~/.cache/huggingface`. The network policy must allow `huggingface.co` and `*.hf.co`.

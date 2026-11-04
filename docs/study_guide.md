@@ -185,7 +185,7 @@ The engine owns everything on one GPU — model, KV pool, page table, attention 
 
 ## Hands-on exercises (CPU only)
 
-The `experiments/` folder on `learn/playground` holds ten beginner scripts, all verified to run in the cloud session. Experiments 1–6 run mini-sglang's real scheduler and KV-cache code on a CPU with fake tokens. Experiments 7–10 run real Qwen3-0.6B weights with Hugging Face `transformers` to show what the KV cache holds and saves. `experiments/README.md` explains both setups.
+The `experiments/` folder on `learn/playground` holds twelve beginner scripts, all verified to run in the cloud session. Experiments 1–6 run mini-sglang's real scheduler and KV-cache code on a CPU with fake tokens. Experiments 7–12 run real Qwen3-0.6B weights with Hugging Face `transformers` to show what the KV cache holds and saves. `experiments/README.md` explains both setups.
 
 | # | Script | What you see | Module |
 | --- | --- | --- | --- |
@@ -199,6 +199,8 @@ The `experiments/` folder on `learn/playground` holds ten beginner scripts, all 
 | 8 | `08_kv_cache_on_off.py` | Same output 7x faster with a KV cache | 3, 4 |
 | 9 | `09_kv_cache_memory.py` | 112 KiB per token; how mini-sglang sizes its KV pool | 3, 4 |
 | 10 | `10_prefix_reuse_real.py` | Reusing a real cached prefix gives identical answers | 3 |
+| 11 | `11_batched_decode.py` | Batch 64 decodes 12x more tokens/s than batch 1 | 1, 4 |
+| 12 | `12_real_model_scheduler.py` | Capstone: mini-sglang's real scheduler + radix cache serving the real model; answers identical | all |
 
 Each script ends with a question, and its docstring suggests a variation to try. Run them from the repo root with the virtual environment active:
 

@@ -134,17 +134,22 @@ def run_sim(
     eos_id: int = 0,
     verbose: bool = True,
     max_steps: int = 1000,
+    engine=None,
 ):
     """Drive the real PrefillManager / DecodeManager / CacheManager with fake tokens.
 
     arrivals:  {step: [UserMsg, ...]} - requests that arrive at the start of that step.
     eos_after: {uid: n} - that request "samples" EOS as its n-th output token.
-    Returns (step logs, {uid: prefix-cache hit length at admission}).
+    engine:    optional fn(batch) -> {uid: next_token}, called before complete_one() like
+               Engine.forward_batch. Without it, tokens are fake.
+    Returns (step logs, {uid: prefix-cache hit length at admission}); the tokens each
+    request generated are stored on the returned list as `logs.generated`.
     """
     from minisgl.scheduler.prefill import ChunkedReq
 
     eos_after = eos_after or {}
     logs, hits, outputs = [], {}, {}
+    generated: dict = {}
     step = 0
     while step < max_steps:
         for msg in arrivals.get(step, []):
@@ -166,6 +171,7 @@ def run_sim(
         tokens = sum(r.extend_len for r in batch.reqs)
 
         # 3. "forward pass"                               -- Engine.forward_batch
+        sampled = engine(batch) if engine else {}
         for r in batch.reqs:
             r.complete_one()
         m.decode.filter_reqs(batch.reqs)
@@ -176,8 +182,12 @@ def run_sim(
                 if isinstance(r, ChunkedReq):
                     continue
                 n = outputs[r.uid] = outputs.get(r.uid, 0) + 1
-                token = eos_id if eos_after.get(r.uid) == n else 1000 + n
+                if r.uid in sampled:
+                    token = sampled[r.uid]
+                else:
+                    token = eos_id if eos_after.get(r.uid) == n else 1000 + n
                 r.append_host(torch.tensor([token], dtype=torch.int32))
+                generated.setdefault(r.uid, []).append(token)
                 finished = (not r.can_decode) or token == eos_id
                 if finished:
                     m.decode.remove_req(r)
@@ -205,4 +215,10 @@ def run_sim(
             )
         step += 1
     m.cache.check_integrity()  # free + cached must equal the pool size
+    logs = _Logs(logs)
+    logs.generated = generated
     return logs, hits
+
+
+class _Logs(list):
+    generated: dict
