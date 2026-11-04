@@ -185,7 +185,7 @@ The engine owns everything on one GPU — model, KV pool, page table, attention 
 
 ## Hands-on exercises (CPU only)
 
-The `experiments/` folder on `learn/playground` holds six beginner scripts that run mini-sglang's real scheduler and KV-cache code on a CPU, with fake tokens in place of the model. All six are verified to run in the cloud session; `experiments/README.md` explains the CPU shim.
+The `experiments/` folder on `learn/playground` holds ten beginner scripts, all verified to run in the cloud session. Experiments 1–6 run mini-sglang's real scheduler and KV-cache code on a CPU with fake tokens. Experiments 7–10 run real Qwen3-0.6B weights with Hugging Face `transformers` to show what the KV cache holds and saves. `experiments/README.md` explains both setups.
 
 | # | Script | What you see | Module |
 | --- | --- | --- | --- |
@@ -195,6 +195,10 @@ The `experiments/` folder on `learn/playground` holds six beginner scripts that 
 | 4 | `04_eviction_lru.py` | Least-recently-used eviction | 3 |
 | 5 | `05_chunked_prefill.py` | A 64-token prompt split into 16-token chunks | 1, 2 |
 | 6 | `06_admission_memory.py` | Larger `max_tokens` means fewer requests run at once | 2 |
+| 7 | `07_generate_cpu.py` | Prefill vs decode timing with a real model | 0, 4 |
+| 8 | `08_kv_cache_on_off.py` | Same output 7x faster with a KV cache | 3, 4 |
+| 9 | `09_kv_cache_memory.py` | 112 KiB per token; how mini-sglang sizes its KV pool | 3, 4 |
+| 10 | `10_prefix_reuse_real.py` | Reusing a real cached prefix gives identical answers | 3 |
 
 Each script ends with a question, and its docstring suggests a variation to try. Run them from the repo root with the virtual environment active:
 
