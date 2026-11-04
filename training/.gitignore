@@ -1,2 +1,5 @@
 data/
 checkpoints/
+train_stdout.log
+log.jsonl
+samples.md
