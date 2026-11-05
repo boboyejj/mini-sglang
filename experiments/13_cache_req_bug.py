@@ -8,8 +8,9 @@ points at them. With a large pool the freed slots are not reused in time and ans
 correct (a latent bug); with a small pool another request overwrites them and the answer
 changes. The fix points the request at the tree's copy before freeing its duplicate.
 
-This script runs the 44-request tiny-model workload with the original and the fixed
-cache_req (patched in at runtime; mini-sglang's source is not modified) at three pool sizes,
+The fix is now in python/minisgl/scheduler/cache.py (see sgl-project/mini-sglang#168 and the
+open upstream PRs #142 and #154, which make the same change). This script runs the 44-request
+tiny-model workload with the old cache_req (embedded below) and the fixed one at three pool sizes,
 and counts identical answers and forward passes that read K/V from freed slots.
 Run: python experiments/13_cache_req_bug.py   (~1 min)
 """
@@ -29,19 +30,14 @@ spec.loader.exec_module(e12)
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-def cache_req_fixed(self, req, *, finished):
+def cache_req_original(self, req, *, finished):
+    """CacheManager.cache_req as it was before the fix (mini-sglang 9a91cfa)."""
     insert_ids = req.input_ids[: req.cached_len]
     page_indices = self.page_table[req.table_idx, : req.cached_len]
     old_handle = req.cache_handle
     cached_len, new_handle = self.prefix_cache.insert_prefix(insert_ids, page_indices)
     self.unlock(old_handle)
-    duplicate = page_indices[old_handle.cached_len : cached_len].clone()
-    if cached_len > old_handle.cached_len:  # FIX: point the request at the tree's copy first
-        tree = new_handle.get_matched_indices()
-        self.page_table[req.table_idx, old_handle.cached_len : cached_len] = tree[
-            old_handle.cached_len : cached_len
-        ]
-    self._free(duplicate)
+    self._free(page_indices[old_handle.cached_len : cached_len])  # BUG: still in page_table
     if finished:
         self._free(page_indices[new_handle.cached_len :])
     else:
@@ -57,8 +53,8 @@ refs = {
     u: M.generate(model, ids.unsqueeze(0), 64, eos_id=tok.eos_token_id).tokens
     for u, (_, ids) in prompts.items()
 }
-original = CacheManager.cache_req
-for label, fn in [("original cache_req", original), ("fixed cache_req   ", cache_req_fixed)]:
+fixed = CacheManager.cache_req  # the source now contains the fix
+for label, fn in [("original cache_req", cache_req_original), ("fixed cache_req   ", fixed)]:
     CacheManager.cache_req = fn
     for slots in (4096, 1024, 768):
         m = C.make_managers(
@@ -82,4 +78,4 @@ for label, fn in [("original cache_req", original), ("fixed cache_req   ", cache
         print(
             f"{label} slots={slots:>4}: identical {same}/44 | passes reading freed slots: {len(freed_reads)}"
         )
-CacheManager.cache_req = original
+CacheManager.cache_req = fixed

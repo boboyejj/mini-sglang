@@ -70,8 +70,14 @@ class CacheManager:
         cached_len, new_handle = self.prefix_cache.insert_prefix(insert_ids, page_indices)
         # unlock until all operations on handle is done
         self.unlock(old_handle)
-        # this part is already in the prefix cache, free it
-        self._free(page_indices[old_handle.cached_len : cached_len])
+        # this part is already in the prefix cache, free it. If the request is still running,
+        # first point its page table at the cache's copy: otherwise it keeps reading the freed
+        # slots, which another request may be given and overwrite (sgl-project/mini-sglang#168).
+        duplicate = page_indices[old_handle.cached_len : cached_len].clone()
+        if not finished and cached_len > old_handle.cached_len:
+            canonical = new_handle.get_matched_indices()[old_handle.cached_len : cached_len]
+            page_indices[old_handle.cached_len : cached_len].copy_(canonical)
+        self._free(duplicate)
         if finished:  # this tail part should be freed
             self._free(page_indices[new_handle.cached_len :])
         else:  # keep the tail part, update the handle
