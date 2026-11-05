@@ -95,3 +95,25 @@ equally frequent.)
 - **General lessons:** a likelihood benchmark scores the model *and* its tokenizer;
   harness defaults (start token, leading space, summing vs averaging) are part of the
   result; and one average can hide very different behaviors underneath.
+
+## 6. Re-scoring with length normalization
+
+`blimp_rescore.py` re-scores the saved log-probabilities three ways (no model runs):
+
+| Method | Tiny: overall | FEWER / same / MORE tokens | Qwen3-0.6B: overall | FEWER / same / MORE tokens |
+|---|---|---|---|---|
+| sum (standard) | 54.6% | 97.0 / 56.2 / 6.7 | **74.8%** | 91.4 / 74.5 / 51.0 |
+| per token | **57.1%** | 56.8 / 56.2 / 61.9 | 71.6% | 23.9 / 74.5 / 97.2 |
+| per character | 52.9% | 80.5 / 53.1 / 26.0 | 70.9% | 62.4 / 71.4 / 77.2 |
+
+("FEWER / MORE" = the grammatical sentence has fewer / more tokens than the ungrammatical one.)
+
+- **Per-token averaging removes the tiny model's length bias** (57–62% in every group) and
+  raises its score to 57.1%, close to its equal-length score: its real grammar level.
+- **For Qwen3-0.6B it overcorrects:** it now prefers the *longer* sentence (97% vs 24%),
+  because Qwen's extra tokens are usually cheap, predictable pieces such as `s` or `'t`, and
+  averaging rewards adding them. Its score drops to 71.6%.
+- **Per-character** (lm-eval's `acc_norm` idea) helps neither model here.
+- **No normalization is neutral.** The equal-token pairs are unchanged by summing or
+  averaging, which makes them the most trustworthy comparison: 56.2% vs 74.5%. BLiMP
+  officially uses the plain sum, because its pairs are designed to differ minimally.
