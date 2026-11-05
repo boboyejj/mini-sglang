@@ -30,7 +30,7 @@ Run each script from the repository root, e.g. `python experiments/01_request_co
 Each script ends with a question. Read its docstring's **Try** line for a variation, predict
 the output, then run it.
 
-## Experiments with real model weights (7–12)
+## Experiments with real model weights (7–13)
 
 **Why download weights?** Experiments 1–6 simulate the bookkeeping with fake tokens. They
 show *where* K/V lives and *when* it is reused, but not *what* it is or *why* it matters.
@@ -56,6 +56,8 @@ with greedy (`argmax`) sampling.
 | 10 | `10_prefix_reuse_real.py` | Prefix caching with real tensors (what the radix cache relies on) | 137 of ~153 tokens reused; ~2x faster prefill; identical answers |
 | 11 | `11_batched_decode.py` | Batching decode: step time vs batch size | Batch 64: step only 5x slower than batch 1, so 12x the tokens/s |
 | 12 | `12_real_model_scheduler.py` | Capstone: mini-sglang's real scheduler + radix cache driving the real model through a paged KV pool | 4 requests, chunking + prefix hits; every answer identical to plain generation; 68% of prefill saved |
+| 12 | `12_real_model_scheduler.py --model tiny` | Our 5.2M TinyStories model served by the same scheduler: 44 requests, up to 16 running | 211 steps, decode batches of 14.4 on average; all 44 answers identical to plain generation |
+| 13 | `13_cache_req_bug.py` | A KV bookkeeping bug in `CacheManager.cache_req` (found with experiment 12 under memory pressure) and a fix | Original: 43/44 identical at 1,024 and 768 slots, 110-174 reads of freed slots; fixed: 44/44 and 0 |
 
 After a fresh container start, the first load can take ~2 minutes (reading 1.5 GB from a cold disk); later loads take ~1–2 s. Timings vary with the machine.
 Qwen3-0.6B is small, so expect simple, sometimes wrong answers: these experiments measure

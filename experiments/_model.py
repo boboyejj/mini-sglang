@@ -65,7 +65,13 @@ class Result:
 
 @torch.inference_mode()
 def generate(
-    model, ids: torch.Tensor, max_new_tokens: int, cache=None, use_cache=True, ignore_eos=False
+    model,
+    ids: torch.Tensor,
+    max_new_tokens: int,
+    cache=None,
+    use_cache=True,
+    ignore_eos=False,
+    eos_id=None,
 ) -> Result:
     """Greedy generation with a hand-written prefill/decode loop.
 
@@ -73,8 +79,9 @@ def generate(
     cache: an existing KV cache to extend (a reused prefix), or None to start empty.
     use_cache=False recomputes attention over the whole sequence at every step.
     ignore_eos=True keeps generating to max_new_tokens (like SamplingParams.ignore_eos).
+    eos_id overrides the model config's end-of-sequence token (the tiny model's config has none).
     """
-    eos = model.config.eos_token_id
+    eos = eos_id if eos_id is not None else model.config.eos_token_id
     eos = set(eos if isinstance(eos, list) else [eos])
     res = Result()
     if use_cache and cache is None:
