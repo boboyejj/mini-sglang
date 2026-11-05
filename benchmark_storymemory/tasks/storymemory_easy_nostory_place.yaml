@@ -1,0 +1,7 @@
+# Baseline: the same question with the story removed (only the unfinished sentence).
+include: _template_yaml
+task: storymemory_easy_nostory_place
+doc_to_text: "{{stem}}"
+dataset_kwargs:
+  data_files:
+    test: benchmark_storymemory/data/storymemory_easy_place.jsonl

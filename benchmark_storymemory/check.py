@@ -1,5 +1,7 @@
 """Quality checks for StoryMemory items. Run: python benchmark_storymemory/check.py
 
+0. the marked answer is CORRECT according to the story (re-derived from the text)
+
 1. every choice is exactly 1 token (with a leading space) for both models' tokenizers
 2. choices are distinct, and (except 'gender') every choice appears in the story
 3. the correct answer's position and the distances are balanced
@@ -24,6 +26,30 @@ def main() -> None:
     for f in sorted(glob.glob("benchmark_storymemory/data/storymemory_*.jsonl")):
         rows += [json.loads(line) for line in open(f)]
     problems = []
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gen", "benchmark_storymemory/generate.py")
+    gen = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gen)
+    for r in rows:
+        ctx, stem, gold = r["context"], r["stem"], r["choices"][r["gold"]]
+        cat = r["category"]
+        if cat == "name":
+            obj = stem.split()[1]
+            ok = re.search(rf"\b{gold} had an? {obj}\.", ctx)
+        elif cat == "object":
+            who = stem.split()[1]
+            ok = re.search(rf"\b{who} had an? {gold}\.", ctx)
+        elif cat == "time":
+            who = stem.split()[0]
+            ok = re.search(rf"\b{who} took a walk every {gold}\.", ctx)
+        elif cat == "place":
+            who = stem.split()[0]
+            ok = re.search(rf"\b{who} went to the {gold}\.", ctx)
+        else:
+            finder = re.search(r"(\w+) found a big stick\.", ctx).group(1)
+            ok = gold == ("girl" if finder in gen.GIRLS else "boy")
+        if not ok:
+            problems.append(f"{r['story_id']}: marked answer '{gold}' is not supported by the story")
     for r in rows:
         story = r["context"][: -len(r["stem"])]
         for c in r["choices"]:
@@ -40,13 +66,15 @@ def main() -> None:
     for p in problems[:10]:
         print("  ", p)
 
-    for cat in ["name", "object", "time", "place", "gender"]:
-        rs = [r for r in rows if r["category"] == cat]
+    for cat in sorted({(r["variant"], r["category"]) for r in rows}):
+        rs = [r for r in rows if (r["variant"], r["category"]) == cat]
+        cat = "/".join(cat)
         gold = collections.Counter(r["gold"] for r in rs)
         dist = collections.Counter(r["distance"] for r in rs)
-        print(f"{cat:<7} correct-answer positions {dict(sorted(gold.items()))}"
+        answers = collections.Counter(r["choices"][r["gold"]] for r in rs) if "gender" in cat else ""
+        print(f"{cat:<17} correct-answer positions {dict(sorted(gold.items()))}"
               f"  distances {dict(sorted(dist.items()))}"
-              f"  unique stories {len({r['context'] for r in rs})}/{len(rs)}")
+              f"  unique stories {len({r['context'] for r in rs})}/{len(rs)} {dict(answers) if answers else ''}")
 
     print("context length (tiny tokenizer) by distance:")
     for d in sorted({r["distance"] for r in rows}):

@@ -1,0 +1,5 @@
+include: _template_yaml
+task: storymemory_easy_place
+dataset_kwargs:
+  data_files:
+    test: benchmark_storymemory/data/storymemory_easy_place.jsonl

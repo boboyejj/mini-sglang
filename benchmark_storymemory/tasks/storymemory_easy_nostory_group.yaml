@@ -1,0 +1,13 @@
+group: storymemory_easy_nostory
+task:
+  - storymemory_easy_nostory_name
+  - storymemory_easy_nostory_object
+  - storymemory_easy_nostory_time
+  - storymemory_easy_nostory_place
+  - storymemory_easy_nostory_gender
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

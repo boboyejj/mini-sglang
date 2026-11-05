@@ -8,7 +8,7 @@ for pair in "tiny-qwen3=training/tiny-qwen3" "qwen3-0.6b=$QWEN"; do
   name=${pair%%=*}; path=${pair#*=}
   echo "=== $name"
   lm_eval --model hf --model_args "pretrained=$path,dtype=float32" \
-    --include_path benchmark_storymemory/tasks --tasks storymemory,storymemory_nostory \
+    --include_path benchmark_storymemory/tasks --tasks storymemory,storymemory_nostory,storymemory_easy,storymemory_easy_nostory \
     --device cpu --batch_size 16 --output_path "benchmark_storymemory/results/$name" --log_samples \
     2>&1 | grep -v -i warn | grep -E "^\|" || true
 done
