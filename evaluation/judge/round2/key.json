@@ -1,0 +1,182 @@
+{
+ "T01": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 7,
+  "round1_id": null
+ },
+ "T02": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 0,
+  "round1_id": null
+ },
+ "T03": {
+  "model": "tiny-qwen3",
+  "prompt_id": 1,
+  "round1_id": "S11"
+ },
+ "T04": {
+  "model": "tiny-qwen3",
+  "prompt_id": 10,
+  "round1_id": "S06"
+ },
+ "T05": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 5,
+  "round1_id": null
+ },
+ "T06": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 3,
+  "round1_id": null
+ },
+ "T07": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 2,
+  "round1_id": "S09"
+ },
+ "T08": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 8,
+  "round1_id": "S24"
+ },
+ "T09": {
+  "model": "tiny-qwen3",
+  "prompt_id": 9,
+  "round1_id": "S15"
+ },
+ "T10": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 9,
+  "round1_id": "S13"
+ },
+ "T11": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 4,
+  "round1_id": null
+ },
+ "T12": {
+  "model": "tiny-qwen3",
+  "prompt_id": 3,
+  "round1_id": "S23"
+ },
+ "T13": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 10,
+  "round1_id": null
+ },
+ "T14": {
+  "model": "tiny-qwen3",
+  "prompt_id": 2,
+  "round1_id": "S16"
+ },
+ "T15": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 3,
+  "round1_id": "S01"
+ },
+ "T16": {
+  "model": "tiny-qwen3",
+  "prompt_id": 7,
+  "round1_id": "S20"
+ },
+ "T17": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 6,
+  "round1_id": null
+ },
+ "T18": {
+  "model": "tiny-qwen3",
+  "prompt_id": 11,
+  "round1_id": "S08"
+ },
+ "T19": {
+  "model": "tiny-qwen3",
+  "prompt_id": 0,
+  "round1_id": "S22"
+ },
+ "T20": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 11,
+  "round1_id": null
+ },
+ "T21": {
+  "model": "tiny-qwen3",
+  "prompt_id": 6,
+  "round1_id": "S14"
+ },
+ "T22": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 6,
+  "round1_id": "S03"
+ },
+ "T23": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 9,
+  "round1_id": null
+ },
+ "T24": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 5,
+  "round1_id": "S07"
+ },
+ "T25": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 10,
+  "round1_id": "S17"
+ },
+ "T26": {
+  "model": "tiny-qwen3",
+  "prompt_id": 5,
+  "round1_id": "S02"
+ },
+ "T27": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 7,
+  "round1_id": "S19"
+ },
+ "T28": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 0,
+  "round1_id": "S12"
+ },
+ "T29": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 8,
+  "round1_id": null
+ },
+ "T30": {
+  "model": "tiny-qwen3",
+  "prompt_id": 4,
+  "round1_id": "S18"
+ },
+ "T31": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 2,
+  "round1_id": null
+ },
+ "T32": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 1,
+  "round1_id": "S05"
+ },
+ "T33": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 11,
+  "round1_id": "S04"
+ },
+ "T34": {
+  "model": "qwen3-0.6b-chat",
+  "prompt_id": 1,
+  "round1_id": null
+ },
+ "T35": {
+  "model": "qwen3-0.6b-raw",
+  "prompt_id": 4,
+  "round1_id": "S10"
+ },
+ "T36": {
+  "model": "tiny-qwen3",
+  "prompt_id": 8,
+  "round1_id": "S21"
+ }
+}
