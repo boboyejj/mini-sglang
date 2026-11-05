@@ -1,0 +1,98 @@
+{
+ "S01": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 3
+ },
+ "S02": {
+  "model": "tiny-qwen3",
+  "prompt_id": 5
+ },
+ "S03": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 6
+ },
+ "S04": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 11
+ },
+ "S05": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 1
+ },
+ "S06": {
+  "model": "tiny-qwen3",
+  "prompt_id": 10
+ },
+ "S07": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 5
+ },
+ "S08": {
+  "model": "tiny-qwen3",
+  "prompt_id": 11
+ },
+ "S09": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 2
+ },
+ "S10": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 4
+ },
+ "S11": {
+  "model": "tiny-qwen3",
+  "prompt_id": 1
+ },
+ "S12": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 0
+ },
+ "S13": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 9
+ },
+ "S14": {
+  "model": "tiny-qwen3",
+  "prompt_id": 6
+ },
+ "S15": {
+  "model": "tiny-qwen3",
+  "prompt_id": 9
+ },
+ "S16": {
+  "model": "tiny-qwen3",
+  "prompt_id": 2
+ },
+ "S17": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 10
+ },
+ "S18": {
+  "model": "tiny-qwen3",
+  "prompt_id": 4
+ },
+ "S19": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 7
+ },
+ "S20": {
+  "model": "tiny-qwen3",
+  "prompt_id": 7
+ },
+ "S21": {
+  "model": "tiny-qwen3",
+  "prompt_id": 8
+ },
+ "S22": {
+  "model": "tiny-qwen3",
+  "prompt_id": 0
+ },
+ "S23": {
+  "model": "tiny-qwen3",
+  "prompt_id": 3
+ },
+ "S24": {
+  "model": "qwen3-0.6b",
+  "prompt_id": 8
+ }
+}

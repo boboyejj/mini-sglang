@@ -1,0 +1,29 @@
+{
+ "judge": "Claude (this session), round 1, stories in ID order, rubric.md, before opening key.json",
+ "grades": {
+  "S01": {"grammar": 8, "consistency": 2, "plot": 1, "creativity": 2, "why": "Finishes the quote, then turns into a math word problem with answer options."},
+  "S02": {"grammar": 7, "consistency": 3, "plot": 3, "creativity": 3, "why": "Joins the quote, but Alice becomes Anna and the dialogue is a non sequitur."},
+  "S03": {"grammar": 8, "consistency": 2, "plot": 1, "creativity": 1, "why": "One line of story, then a reading-comprehension quiz with an explanation."},
+  "S04": {"grammar": 6, "consistency": 2, "plot": 1, "creativity": 2, "why": "Odd run-on actions unrelated to the pocket, then a quiz ending in \\boxed{}."},
+  "S05": {"grammar": 7, "consistency": 3, "plot": 1, "creativity": 1, "why": "Starts plausibly, then repetitive meta-commentary about what the story references."},
+  "S06": {"grammar": 6, "consistency": 3, "plot": 3, "creativity": 3, "why": "Sensible start, but Alice becomes Lila then Sara, the mom's lines make no sense, and it repeats."},
+  "S07": {"grammar": 7, "consistency": 2, "plot": 1, "creativity": 1, "why": "Completes the line, then a multiple-choice question about the situation."},
+  "S08": {"grammar": 5, "consistency": 2, "plot": 2, "creativity": 4, "why": "Ignores the pocket; unrelated scenes (store, picnic, tree like a house), garbled sentences."},
+  "S09": {"grammar": 8, "consistency": 4, "plot": 5, "creativity": 5, "why": "Fluent, but abandons the trapped mouse for a missing chocolate bar; sensible search plot."},
+  "S10": {"grammar": 7, "consistency": 2, "plot": 1, "creativity": 1, "why": "Completes the line, then a quiz with repeated 'Answer: B' and a step-by-step explanation."},
+  "S11": {"grammar": 8, "consistency": 5, "plot": 5, "creativity": 5, "why": "Follows from the strange cabinet with a voice and an old man; some logic gaps but a real ending."},
+  "S12": {"grammar": 7, "consistency": 3, "plot": 1, "creativity": 2, "why": "Starts with a sick bunny, then a medical multiple-choice quiz (including fentanyl)."},
+  "S13": {"grammar": 6, "consistency": 3, "plot": 2, "creativity": 3, "why": "Confusing tune-repeating episode with a cat, then a quiz about what the story is based on."},
+  "S14": {"grammar": 6, "consistency": 3, "plot": 3, "creativity": 4, "why": "Gloomy becomes restless, Alice becomes Anna and Lily, plot drifts to birds and a squirrel."},
+  "S15": {"grammar": 7, "consistency": 4, "plot": 5, "creativity": 4, "why": "Bunny looks for the sound, gets lost and is helped; the tiger and guitar are forgotten."},
+  "S16": {"grammar": 3, "consistency": 1, "plot": 2, "creativity": 3, "why": "Incoherent: a 'tuna' and 'The B' appear; a moral that does not follow."},
+  "S17": {"grammar": 6, "consistency": 2, "plot": 1, "creativity": 1, "why": "One sentence, then a quiz with duplicate options and repeated answers."},
+  "S18": {"grammar": 6, "consistency": 3, "plot": 5, "creativity": 4, "why": "Pleasant play story, but Alice becomes Anna/Lily and the toys act oddly; has an ending."},
+  "S19": {"grammar": 5, "consistency": 2, "plot": 1, "creativity": 1, "why": "One exchange, then a personality quiz and a loop of 'Answer: \\boxed{B}'."},
+  "S20": {"grammar": 6, "consistency": 3, "plot": 4, "creativity": 4, "why": "Odd join ('wearing this food?'), Alice becomes Anna; simple helping-friend arc."},
+  "S21": {"grammar": 6, "consistency": 4, "plot": 4, "creativity": 4, "why": "Goes inside as told, then finds a tree indoors; a girl and a farmer appear; friendship ending."},
+  "S22": {"grammar": 6, "consistency": 4, "plot": 4, "creativity": 3, "why": "Sick bunny tells her mom and gets food; pronoun confusion (him/her); simple ending."},
+  "S23": {"grammar": 6, "consistency": 4, "plot": 4, "creativity": 4, "why": "Awkward quote join; contradictory emotions; ends with a lesson about saying sorry."},
+  "S24": {"grammar": 7, "consistency": 3, "plot": 1, "creativity": 2, "why": "Mother's odd speech, then an essay-style analysis of 'possible interpretations'."}
+ }
+}
