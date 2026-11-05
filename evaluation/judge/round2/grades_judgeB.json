@@ -1,0 +1,257 @@
+{
+ "judge": "B",
+ "grades": {
+  "T36": {
+   "grammar": 6,
+   "consistency": 4,
+   "plot": 4,
+   "creativity": 4,
+   "why": "Readable with some redundancy, but the rain/indoors setup drifts into an odd tree, a stray farmer and a girl, giving a loose friendship ending."
+  },
+  "T35": {
+   "grammar": 6,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "One line of story then drifts into a multiple-choice quiz with repeated answers."
+  },
+  "T34": {
+   "grammar": 7,
+   "consistency": 4,
+   "plot": 4,
+   "creativity": 4,
+   "why": "Restarts the clause instead of joining 'when suddenly', contradicts itself (door won't open yet she finds things inside), and ends with a repetitive treasure loop."
+  },
+  "T33": {
+   "grammar": 4,
+   "consistency": 1,
+   "plot": 1,
+   "creativity": 1,
+   "why": "Nonsensical actions unrelated to Ben's pocket, then collapses into a self-contradicting quiz."
+  },
+  "T32": {
+   "grammar": 5,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "Brief cabinet events then drifts into repetitive meta-commentary about what the story references."
+  },
+  "T31": {
+   "grammar": 9,
+   "consistency": 6,
+   "plot": 7,
+   "creativity": 4,
+   "why": "Repeats the final clause of the opening, then gives a clear, simple rescue with a resolution, though the details are generic and slightly muddled."
+  },
+  "T30": {
+   "grammar": 6,
+   "consistency": 3,
+   "plot": 5,
+   "creativity": 4,
+   "why": "Names shift (Anna, Lily) and toys oddly act, but there is a play-together arc with an ending."
+  },
+  "T29": {
+   "grammar": 8,
+   "consistency": 3,
+   "plot": 2,
+   "creativity": 2,
+   "why": "Repeats the whole opening and adds one confusing line from the mother with no story progress."
+  },
+  "T28": {
+   "grammar": 6,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "Starts plausibly but turns into a medical multiple-choice quiz and unrelated questions."
+  },
+  "T27": {
+   "grammar": 4,
+   "consistency": 1,
+   "plot": 1,
+   "creativity": 1,
+   "why": "One exchange then a personality quiz with endlessly repeated answer lines."
+  },
+  "T26": {
+   "grammar": 7,
+   "consistency": 3,
+   "plot": 3,
+   "creativity": 2,
+   "why": "Ben's reply doesn't fit, Alice becomes Anna, and the 'safe again' ending is unmotivated."
+  },
+  "T25": {
+   "grammar": 4,
+   "consistency": 1,
+   "plot": 1,
+   "creativity": 1,
+   "why": "Drifts into a repetitive, nonsensical multiple-choice question about the room."
+  },
+  "T24": {
+   "grammar": 5,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "A fitting first line of dialogue, then a reading-comprehension quiz and explanation."
+  },
+  "T23": {
+   "grammar": 9,
+   "consistency": 6,
+   "plot": 7,
+   "creativity": 5,
+   "why": "Repeats the opening, but then gives a pleasant, coherent duet ending with the forest filled with music."
+  },
+  "T22": {
+   "grammar": 6,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "One line of dialogue then a quiz with a confused explanation."
+  },
+  "T21": {
+   "grammar": 5,
+   "consistency": 3,
+   "plot": 3,
+   "creativity": 3,
+   "why": "Changes 'gloomy' to 'restless', names shift to Anna and Lily, and events wander (birds, squirrel) without resolution."
+  },
+  "T20": {
+   "grammar": 9,
+   "consistency": 5,
+   "plot": 2,
+   "creativity": 2,
+   "why": "Repeats part of the opening and only has Alice ask the same question again, with no story progress."
+  },
+  "T19": {
+   "grammar": 5,
+   "consistency": 4,
+   "plot": 4,
+   "creativity": 3,
+   "why": "Pronoun and role confusion (him, rabbit, smart girl) muddles a thin food-and-hug ending that ignores the feast."
+  },
+  "T18": {
+   "grammar": 4,
+   "consistency": 2,
+   "plot": 2,
+   "creativity": 3,
+   "why": "Dialogue doesn't fit, unexplained mom, store and picnic, and an incoherent tree sequence."
+  },
+  "T17": {
+   "grammar": 8,
+   "consistency": 4,
+   "plot": 3,
+   "creativity": 4,
+   "why": "Skips completing Alice's question and gives a contradictory rain line as a fragmentary reason for gloom."
+  },
+  "T16": {
+   "grammar": 6,
+   "consistency": 3,
+   "plot": 4,
+   "creativity": 3,
+   "why": "Odd opening line ('wearing this food'), Alice becomes Anna, and the tool-pulling scene is confused though it ends warmly."
+  },
+  "T15": {
+   "grammar": 7,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "Invents a contradictory quote then turns into a math word problem with options."
+  },
+  "T14": {
+   "grammar": 3,
+   "consistency": 1,
+   "plot": 1,
+   "creativity": 2,
+   "why": "Incoherent text about tuna and food that abandons the mouse and hamster entirely."
+  },
+  "T13": {
+   "grammar": 9,
+   "consistency": 6,
+   "plot": 7,
+   "creativity": 4,
+   "why": "Repeats the opening, then a simple sensible attic search and find, with a small slip of putting the doll back on the shelf."
+  },
+  "T12": {
+   "grammar": 5,
+   "consistency": 3,
+   "plot": 3,
+   "creativity": 3,
+   "why": "Garbled join, mum appears though Jack rode off, and contradictory emotions lead to a muddled lesson."
+  },
+  "T11": {
+   "grammar": 8,
+   "consistency": 6,
+   "plot": 2,
+   "creativity": 2,
+   "why": "Repeats the opening and adds only a single exchange about going to the park, with no story."
+  },
+  "T10": {
+   "grammar": 5,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 2,
+   "why": "Confusing repeated-tune events with a cat, then drifts into a quiz."
+  },
+  "T09": {
+   "grammar": 6,
+   "consistency": 3,
+   "plot": 4,
+   "creativity": 3,
+   "why": "Bunny takes the guitar, the tiger vanishes, and an old man and self-referential bunny confuse a generic friendship ending."
+  },
+  "T08": {
+   "grammar": 7,
+   "consistency": 2,
+   "plot": 1,
+   "creativity": 1,
+   "why": "An odd quote from the mother then drifts into analytic questions about interpretations."
+  },
+  "T07": {
+   "grammar": 8,
+   "consistency": 2,
+   "plot": 4,
+   "creativity": 4,
+   "why": "Ignores the trapped mouse for a missing chocolate bar and rabbit subplot; readable but unrelated and unfinished."
+  },
+  "T06": {
+   "grammar": 8,
+   "consistency": 5,
+   "plot": 6,
+   "creativity": 3,
+   "why": "Repeats part of the opening and skips the quoted words, but resolves sensibly with Jack slowing down, though the last clause is odd."
+  },
+  "T05": {
+   "grammar": 7,
+   "consistency": 3,
+   "plot": 2,
+   "creativity": 2,
+   "why": "Confuses the speaker (addresses Ben while Ben is speaking) and offers no story progression."
+  },
+  "T04": {
+   "grammar": 6,
+   "consistency": 3,
+   "plot": 3,
+   "creativity": 3,
+   "why": "Names shift (Lila, Sara), the mom's dialogue is nonsensical, and the search goes nowhere."
+  },
+  "T03": {
+   "grammar": 7,
+   "consistency": 4,
+   "plot": 5,
+   "creativity": 4,
+   "why": "The cabinet is abandoned for a voice and an old man; the friendship ending is generic and loosely motivated."
+  },
+  "T02": {
+   "grammar": 9,
+   "consistency": 6,
+   "plot": 7,
+   "creativity": 5,
+   "why": "Repeats the opening, then a coherent story of friends helping sick Lucy to the feast with a warm ending."
+  },
+  "T01": {
+   "grammar": 9,
+   "consistency": 5,
+   "plot": 4,
+   "creativity": 5,
+   "why": "Doesn't finish Alice's question, but gives an emotional, mostly coherent beat without resolution."
+  }
+ }
+}
