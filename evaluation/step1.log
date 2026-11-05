@@ -1,0 +1,28 @@
+=== tiny-qwen3: 23:43:21
+|                           Tasks                            |Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|blimp |      2|none  |     0|acc   |↑  |0.546|±  |0.0079|
+|    Tasks     |Version|Filter|n-shot|  Metric  |   |   Value    |   |   Stderr   |
+|--------------|------:|------|-----:|----------|---|-----------:|---|-----------:|
+|arc_easy      |      1|none  |     0|acc       |↑  |      0.2300|±  |      0.0243|
+|              |       |none  |     0|acc_norm  |↑  |      0.2533|±  |      0.0252|
+|hellaswag     |      1|none  |     0|acc       |↑  |      0.2867|±  |      0.0262|
+|              |       |none  |     0|acc_norm  |↑  |      0.2667|±  |      0.0256|
+|lambada_openai|      1|none  |     0|acc       |↑  |      0.0467|±  |      0.0122|
+|              |       |none  |     0|perplexity|↓  |7784218.7197|±  |5050601.3060|
+|piqa          |      1|none  |     0|acc       |↑  |      0.5167|±  |      0.0289|
+|              |       |none  |     0|acc_norm  |↑  |      0.5033|±  |      0.0289|
+=== tiny-qwen3 done: 23:45:55
+=== qwen3-0.6b: 23:45:55
+|                           Tasks                            |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|blimp |      2|none  |     0|acc   |↑  |0.7478|±  |0.0068|
+|    Tasks     |Version|Filter|n-shot|  Metric  |   | Value |   |Stderr|
+|--------------|------:|------|-----:|----------|---|------:|---|-----:|
+|arc_easy      |      1|none  |     0|acc       |↑  | 0.6033|±  |0.0283|
+|              |       |none  |     0|acc_norm  |↑  | 0.5667|±  |0.0287|
+|hellaswag     |      1|none  |     0|acc       |↑  | 0.4167|±  |0.0285|
+|              |       |none  |     0|acc_norm  |↑  | 0.5067|±  |0.0289|
+|lambada_openai|      1|none  |     0|acc       |↑  | 0.4267|±  |0.0286|
+|              |       |none  |     0|perplexity|↓  |22.1736|±  |3.8628|
+|piqa          |      1|none  |     0|acc       |↑  | 0.6800|±  |0.0270|
+|              |       |none  |     0|acc_norm  |↑  | 0.6867|±  |0.0268|
+=== qwen3-0.6b done: 00:02:01
