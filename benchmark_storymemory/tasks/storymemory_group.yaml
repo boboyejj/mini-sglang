@@ -1,0 +1,13 @@
+group: storymemory
+task:
+  - storymemory_name
+  - storymemory_object
+  - storymemory_time
+  - storymemory_place
+  - storymemory_gender
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

@@ -7,10 +7,11 @@ can't be guessed from word familiarity). Scored by likelihood, like HellaSwag/BL
 Five categories, N_PER_CATEGORY items each:
   name     who had an object                "The child with the kite was" -> Max
   object   what someone had                 "Then Max picked up his"      -> kite
-  color    the color of someone's thing     "Max's ball was"              -> blue
+  time     when someone played outside      "Max played outside in the"   -> afternoon
   place    where someone went               "...Max came home from the"   -> zoo
   gender   whether a boy or girl did it     "The child who found the stick was a" -> boy
-Distance: 0, 2 or 5 neutral filler sentences between the facts and the question.
+Distance: 0, 5, 15 or 25 neutral filler sentences between the facts and the question
+(about 25 to 230 tokens of story; the tiny model was trained on 256-token passages).
 
 Output: data/storymemory_<category>.jsonl with fields
   context (story + question stem), stem (question stem only, for the no-story baseline),
@@ -25,20 +26,26 @@ import random
 HERE = os.path.dirname(os.path.abspath(__file__))
 N_PER_CATEGORY = 50
 SEED = 2026
-DISTANCES = [0, 2, 5]  # filler sentences between the facts and the question
+DISTANCES = [0, 5, 15, 25]  # filler sentences between the facts and the question
 
 GIRLS = "Lily Mia Amy Sara Sue Anna Emma Lucy Kate Jane Rose Zoe".split()
 BOYS = "Tom Max Ben Sam Tim Jack Leo Bob Dan Joe Jim".split()
 OBJECTS = "ball kite hat cup box book doll car drum bag bike boat".split()
-COLORS = "red blue green pink yellow black white brown purple orange".split()
+TIMES = "morning afternoon evening".split()
 PLACES = "park beach zoo farm lake shop forest school garden river".split()
-FILLERS = [  # neutral: no names, objects, colors or places from the lists above
+FILLERS = [  # neutral: no names, objects, places or times of day from the lists above
     "The sun was warm and bright.", "The birds sang in the trees.", "It was a nice day.",
     "The wind was soft and cool.", "Everyone felt happy.", "The sky was very clear.",
     "They laughed and talked a lot.", "Some clouds moved slowly.", "A dog barked far away.",
     "The grass was soft.", "They had a snack and a drink.", "Time went by quickly.",
+    "A little bird flew over the houses.", "The flowers smelled sweet.", "A cat slept in the sun.",
+    "They sang a happy song.", "The air smelled fresh.", "A butterfly danced in the air.",
+    "They counted the clouds in the sky.", "A small frog jumped into a puddle.",
+    "The trees moved in the wind.", "They told funny jokes.", "A bee buzzed around a flower.",
+    "Everyone smiled and waved.", "The road was quiet.", "A squirrel ran up a tree.",
+    "They clapped their hands.", "The leaves were green and shiny.", "A cow said moo.",
+    "They felt calm and safe.",
 ]
-
 
 def pick_kids(rng, n):
     kids = rng.sample([(g, "girl") for g in GIRLS] + [(b, "boy") for b in BOYS], n)
@@ -77,10 +84,10 @@ def make_item(cat, i, rng):
                 stem, choices, answer = f"The child with the {objs[target]} was", [k for k, _ in kids], name
             else:
                 stem, choices, answer = f"Then {name} picked up {his_her(gender)}", objs, objs[target]
-        elif cat == "color":
-            obj, cols = rng.choice(OBJECTS), rng.sample(COLORS, 3)
-            facts = " ".join(f"{k} had {a_an(c)} {c} {obj}." for (k, _), c in zip(kids, cols))
-            stem, choices, answer = f"{name}'s {obj} was", cols, cols[target]
+        elif cat == "time":
+            times = rng.sample(TIMES, 3)
+            facts = " ".join(f"{k} played outside in the {t}." for (k, _), t in zip(kids, times))
+            stem, choices, answer = f"{name} played outside in the", times, times[target]
         elif cat == "place":
             places = rng.sample(PLACES, 3)
             facts = " ".join(f"{k} went to the {p}." for (k, _), p in zip(kids, places))
@@ -101,7 +108,7 @@ def make_item(cat, i, rng):
 def main() -> None:
     rng = random.Random(SEED)
     os.makedirs(os.path.join(HERE, "data"), exist_ok=True)
-    for cat in ["name", "object", "color", "place", "gender"]:
+    for cat in ["name", "object", "time", "place", "gender"]:
         items = [make_item(cat, i, rng) for i in range(N_PER_CATEGORY)]
         with open(os.path.join(HERE, "data", f"storymemory_{cat}.jsonl"), "w") as f:
             for it in items:

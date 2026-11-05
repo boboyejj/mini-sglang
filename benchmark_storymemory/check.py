@@ -8,6 +8,7 @@
 """
 
 import collections
+import statistics
 import glob
 import json
 import re
@@ -39,13 +40,26 @@ def main() -> None:
     for p in problems[:10]:
         print("  ", p)
 
-    for cat in ["name", "object", "color", "place", "gender"]:
+    for cat in ["name", "object", "time", "place", "gender"]:
         rs = [r for r in rows if r["category"] == cat]
         gold = collections.Counter(r["gold"] for r in rs)
         dist = collections.Counter(r["distance"] for r in rs)
         print(f"{cat:<7} correct-answer positions {dict(sorted(gold.items()))}"
               f"  distances {dict(sorted(dist.items()))}"
               f"  unique stories {len({r['context'] for r in rs})}/{len(rs)}")
+
+    print("context length (tiny tokenizer) by distance:")
+    for d in sorted({r["distance"] for r in rows}):
+        n = [len(toks["tiny"](r["context"]).input_ids) for r in rows if r["distance"] == d]
+        print(f"  distance {d:>2}: avg {statistics.mean(n):.0f}, max {max(n)} tokens")
+    vocab = {w.lower() for r in rows for w in r["choices"]} | {"park", "beach", "zoo", "farm", "lake",
+             "shop", "forest", "school", "garden", "river", "noon", "night"}
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gen", "benchmark_storymemory/generate.py")
+    gen = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gen)
+    bad = [f for f in gen.FILLERS if set(re.findall(r"[a-z]+", f.lower())) & (vocab | {n.lower() for n in gen.GIRLS + gen.BOYS} | set(gen.OBJECTS))]
+    print(f"fillers: {len(gen.FILLERS)} distinct; containing a name/object/place/time word: {bad or 'none'}")
 
     path = hf_hub_download("roneneldan/TinyStories", "TinyStoriesV2-GPT4-train.txt",
                            repo_type="dataset", local_files_only=True)
