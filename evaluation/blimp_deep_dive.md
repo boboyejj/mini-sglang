@@ -77,7 +77,8 @@ scores 10% on this sub-task, worse than a coin flip.
 | more common in the grammatical sentence | 1,184 | 80.0% | 88.0% |
 
 (Token counts depend on each model's tokenizer, hence different pair counts. The frequency
-table excludes 1,060 pairs that differ only in word order.)
+table excludes 1,060 pairs that differ only in word order or whose differing words are
+equally frequent.)
 
 ## 5. Findings
 
